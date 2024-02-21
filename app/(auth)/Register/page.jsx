@@ -1,9 +1,11 @@
-import React from 'react'
+import Form from "@components/Form";
 
 const Register = () => {
   return (
-    <div>Register</div>
-  )
-}
+    <div className="relative top-48">
+      <Form type="register" />;
+    </div>
+  );
+};
 
-export default Register
+export default Register;

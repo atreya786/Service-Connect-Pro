@@ -1,8 +1,10 @@
-import React from 'react'
+import Form from "@components/Form"
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div className="relative top-48">
+      <Form type="login" />;
+    </div>
   )
 }
 
