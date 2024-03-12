@@ -15,7 +15,8 @@ const Form = ({ type }) => {
 
   const router = useRouter();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
     if (type === "register") {
       const res = await fetch("/api/auth/register", {
         method: "POST",

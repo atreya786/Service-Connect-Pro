@@ -1,5 +1,5 @@
 import User from "@models/User";
-import { connectToDB } from "@mongoDB";
+import { connectToDB } from "@utils";
 import { hash } from "bcryptjs";
 
 export const POST = async (req, res) => {
