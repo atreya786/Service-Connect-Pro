@@ -26,6 +26,9 @@ const Navbar = () => {
           <div className="h-12 w-12 bg-gray-300 rounded-full cursor-pointer">
             <img src="" alt="profile" />
           </div>
+          <div className="px-3 py-2 border-2 border-black text-black cursor-pointer hover:bg-black hover:text-white">
+            Notifications
+          </div>
           <button
             onClick={handleLogout}
             className="px-3 py-2 border-2 border-black text-black cursor-pointer hover:bg-black hover:text-white"
@@ -39,6 +42,9 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden absolute top-16 left-0 w-full bg-white z-10">
           <div className="flex flex-col items-center py-3">
+            <button className="px-3 py-2 border-2 border-black text-black cursor-pointer hover:bg-black hover:text-white">
+              Notifications
+            </button>
             <button
               onClick={handleLogout}
               className="px-3 text-center w-50 py-3 border-2 border-black text-black cursor-pointer hover:bg-black hover:text-white"

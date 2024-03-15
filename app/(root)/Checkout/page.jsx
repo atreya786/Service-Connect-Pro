@@ -1,9 +1,12 @@
-import React from 'react'
+import Payment from "@components/Payment";
+import React from "react";
 
 const CheckoutPage = () => {
   return (
-    <div>CheckoutPage</div>
-  )
-}
+    <div>
+      <Payment />
+    </div>
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

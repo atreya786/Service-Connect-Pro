@@ -1,9 +1,14 @@
-import React from 'react'
+import OrderDetails from "@components/OrderDetails";
+import UserProfile from "@components/UserProfile";
+import React from "react";
 
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <div>
+      <UserProfile />
+      <OrderDetails />
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

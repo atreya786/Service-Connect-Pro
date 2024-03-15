@@ -1,9 +1,12 @@
-import React from 'react'
+import Table from "@components/Table";
+import React from "react";
 
 const Admin = () => {
   return (
-    <div>Admin</div>
-  )
-}
+    <div>
+      <Table />
+    </div>
+  );
+};
 
-export default Admin
+export default Admin;
