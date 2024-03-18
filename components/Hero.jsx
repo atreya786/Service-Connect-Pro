@@ -1,46 +1,40 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Loader from "./Loader";
+import { Button } from "./ui/button";
 
 const Hero = () => {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
-  if (loading) return <Loader />;
 
   return (
-    <div>
-      <div className="sm:flex w-full sm:mt-5 justify-around p-2 gap-3">
-        <div
-          className="flex flex-col 
-         text-center sm:w-[50%] bg-orange-100 p-3"
-        >
-          <div>
-            <h1 className="text-3xl font-bold ">Service Connect Pro</h1>
-          </div>
-          <div className="grid grid-rows-2 grid-flow-col gap-2">
-            <div className="bg-white m-2 p-3 rounded">1</div>
-            <div className="bg-white m-2 p-3 rounded">2</div>
-            <div className="bg-white m-2 p-3 rounded">3</div>
-            <div className="bg-white m-2 p-3 rounded">4</div>
-            <div className="bg-white m-2 p-3 rounded">5</div>
-            <div className="bg-white m-2 p-3 rounded">6</div>
-          </div>
-          <div className="flex justify-around">
-            <div>Rating</div>
-            <div>Users</div>
-          </div>
+    <div
+      className="h-dvh w-full rounded-md flex items-center p-5"
+      style={{
+        backgroundImage:
+          "linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url('https://plus.unsplash.com/premium_photo-1683141123518-ae57c1b4d335?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="text-white">
+        <div className="text-5xl font-semibold md:text-start text-center">
+          Melodies that help you stay focus
         </div>
-        <div className="text-center sm:w-[50%] bg-orange-200 sm:grid sm:grid-flow-col sm:grid-rows-2 flex flex-col gap-2 p-2">
-          <div className="bg-white rounded">Image-1</div>
-          <div className="bg-white rounded">Image-2</div>
-          <div className="bg-white rounded">Image-3</div>
-          <div className="bg-white rounded">Image-4</div>
+        <div className="pt-5 text-center md:text-start md:w-[60%]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. In, hic quam.
+          Optio aperiam quod accusantium fugiat sequi, enim cupiditate!
+          Perspiciatis ipsum dolorem, nobis assumenda, inventore repellat est
+          sed eius quasi vero alias, accusantium magni? Quo, aspernatur
+          voluptate. Quam recusandae aperiam est culpa id nemo dolorem vitae,
+          non ratione minus iste tempore asperiores quisquam. Eos, modi aut odit
+          voluptas error illum exercitationem mollitia alias at delectus saepe
+          facilis earum eaque animi porro ipsa dicta, veritatis praesentium
+          commodi. Laborum voluptate voluptates animi, deleniti, sequi facere
+          eum obcaecati pariatur dolore doloribus, amet excepturi recusandae
+          fugiat numquam est eius sunt non mollitia expedita officiis.
+        </div>
+        <div className="flex justify-center md:justify-start">
+          <Button className="px-5 py-2 bg-black text-white inline-block mt-10 border">
+            Explore Services
+          </Button>
         </div>
       </div>
     </div>
