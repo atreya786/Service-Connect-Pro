@@ -1,13 +1,25 @@
+"use client";
+
 import Cart from "@components/Cart";
+import Loader from "@components/Loader";
 import Payment from "@components/Payment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const CheckoutPage = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  if (loading) return <Loader />;
+
   return (
-    <div>
-      <Payment />
+    <section className="flex">
       <Cart />
-    </div>
+      <Payment />
+    </section>
   );
 };
 

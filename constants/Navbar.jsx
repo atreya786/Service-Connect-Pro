@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between px-10 items-center py-3 shadow-md sticky top-0 left-0 bg-white">
+    <nav className="flex justify-between px-10 items-center py-3 shadow-md sticky top-0 left-0 bg-white z-50">
       <Link href="/Home">
         <Image src={logo} width={55} height={55} alt="logo" />
       </Link>

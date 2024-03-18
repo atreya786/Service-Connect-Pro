@@ -12,7 +12,7 @@
 }
 
 .loader {
-  border-top-color: #000000;
+  border-top-color: #000;
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.5s linear infinite;
 }
