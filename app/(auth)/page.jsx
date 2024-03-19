@@ -5,7 +5,7 @@ import auth from "../../public/auth.jpg";
 const Login = () => {
   return (
     <div>
-      <div className="container absolute h-dvh flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 sm:m-5">
+      <div className="container absolute h-dvh flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
           <div className="relative inset-0 w-full h-full top-[50]">
             <Image src={auth} width={0} height={0} />

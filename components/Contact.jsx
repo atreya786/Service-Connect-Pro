@@ -1,11 +1,12 @@
 import React from "react";
+import { Button } from "./ui/button";
 
 const Contact = () => {
   return (
     <section className="container mx-auto p-2 md:px-4">
       <div className="flex justify-center">
         <div className="text-start sm:max-w-xl lg:max-w-3xl">
-          <h2 className="mb-12 px-6 text-5xl font-semibold">Contact us</h2>
+          <h2 className="mb-12 px-6 text-4xl font-semibold">Contact us</h2>
         </div>
       </div>
       <div className="flex flex-wrap">
@@ -52,12 +53,12 @@ const Contact = () => {
               defaultValue={""}
             />
           </div>
-          <button
+          <Button
             type="button"
             className="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500"
           >
             Send
-          </button>
+          </Button>
         </form>
         <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
           <div className="flex flex-wrap">

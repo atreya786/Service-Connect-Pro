@@ -59,28 +59,36 @@ const Services = [
 
 export default function FeaturedSection() {
   return (
-    <Carousel className="w-full max-w-[90%] repeat-infinite">
-      <CarouselContent className="-ml-1">
-        {Services.map((service, index) => (
-          <CarouselItem key={index} className="pl-1 sm:basis-1/2 md:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex gap-2 flex-col aspect-square items-center justify-center p-2">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    className="rounded w-full h-auto"
-                  />
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="text-sm text-center">{service.description}</p>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <section className="w-full max-w-[90%]">
+      <h1 className="text-4xl text-center font-semibold pb-5">
+        Explore Our Featured Services
+      </h1>
+      <Carousel>
+        <CarouselContent className="-ml-1">
+          {Services.map((service, index) => (
+            <CarouselItem
+              key={index}
+              className="pl-1 sm:basis-1/2 md:basis-1/3"
+            >
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex gap-2 flex-col aspect-square items-center justify-center p-2">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      className="rounded w-full h-auto"
+                    />
+                    <h3 className="text-xl font-semibold">{service.title}</h3>
+                    <p className="text-sm text-center">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </section>
   );
 }

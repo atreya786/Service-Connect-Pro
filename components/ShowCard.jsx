@@ -3,9 +3,9 @@
 import Link from "next/link";
 import React from "react";
 import card1 from "../public/card1.jpg";
-import card2 from "../public/card2.jpg";
-import card3 from "../public/card3.jpg";
-import card4 from "../public/card4.jpg";
+import card2 from "../public/card2.webp";
+import card3 from "../public/card3.webp";
+import card4 from "../public/card4.webp";
 import Image from "next/image";
 
 const Card = () => {
@@ -41,7 +41,7 @@ const Card = () => {
   ];
   return (
     <section className="w-full p-2">
-      <h1 className="text-5xl text-start font-semibold pb-3">Most Ordered</h1>
+      <h1 className="text-4xl text-center font-semibold pb-5">Most Ordered</h1>
       <div className="w-full lg:flex md:justify-around flex-col lg:flex-row items-center sm:grid grid-rows-2 grid-flow-col flex gap-3">
         {cards.map((card) => (
           <div

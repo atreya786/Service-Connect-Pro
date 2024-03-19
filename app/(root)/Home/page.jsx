@@ -4,7 +4,7 @@ import Card from "@components/ShowCard";
 import FeaturedSection from "@components/FeaturedSection";
 import Contact from "@components/Contact";
 import Hero from "@components/Hero";
-import Suggestions from "@components/Suggestions";
+import Suggestions from "@components/Testimonials";
 import React, { useEffect, useState } from "react";
 import Loader from "@components/Loader";
 
@@ -18,9 +18,9 @@ const Home = () => {
 
   if (loading) return <Loader />;
   return (
-    <main className="p-4 flex flex-col gap-5">
+    <main className="p-4 flex flex-col gap-10">
       <Hero />
-      <section className="flex flex-col items-center gap-5">
+      <section className="flex flex-col items-center gap-10">
         <Card />
         <FeaturedSection />
         <Suggestions />
