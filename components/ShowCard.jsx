@@ -41,16 +41,16 @@ const Card = () => {
   ];
   return (
     <section className="w-full p-2">
-      <h1 className="text-5xl text-start font-semibold">Most Ordered</h1>
-      <div className="w-full lg:flex md:justify-around flex-col lg:flex-row items-center sm:grid grid-rows-2 grid-flow-col flex">
+      <h1 className="text-5xl text-start font-semibold pb-3">Most Ordered</h1>
+      <div className="w-full lg:flex md:justify-around flex-col lg:flex-row items-center sm:grid grid-rows-2 grid-flow-col flex gap-3">
         {cards.map((card) => (
           <div
             key={card.id}
-            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-2 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105"
+            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105"
           >
             <Link href="#">
               <Image
-                className="rounded-t-lg"
+                className="rounded-t-lg h-64 w-full object-cover object-center"
                 src={card.image}
                 alt="Most Ordered Image"
               />
