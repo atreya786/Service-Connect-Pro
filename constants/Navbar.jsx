@@ -51,9 +51,9 @@ const Navbar = () => {
       <div className="sm:flex items-center hidden">
         <div className="flex sm:justify-between items-center gap-2">
           <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
-            <Link href="/About" className="flex gap-1">
-              <span>About</span>
-              <FcAbout size={30} />
+            <Link href="/Services" className="flex gap-1">
+              <span>Services</span>
+              <GrServices size={30} />
             </Link>
           </div>
           <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
@@ -63,9 +63,9 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
-            <Link href="/Services" className="flex gap-1">
-              <span>Services</span>
-              <GrServices size={30} />
+            <Link href="/About" className="flex gap-1">
+              <span>About</span>
+              <FcAbout size={30} />
             </Link>
           </div>
           <div className="cursor-pointer flex items-center">
@@ -105,9 +105,9 @@ const Navbar = () => {
         <div className="lg:hidden absolute top-16 left-0 w-full bg-white z-10">
           <div className="flex flex-col items-center">
             <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
-              <Link href="/About" className="flex gap-1">
-                <span>About</span>
-                <FcAbout size={25} />
+              <Link href="/Services" className="flex gap-1">
+                <span>Services</span>
+                <GrServices size={25} />
               </Link>
             </div>
             <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
@@ -117,9 +117,9 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
-              <Link href="/Services" className="flex gap-1">
-                <span>Services</span>
-                <GrServices size={25} />
+              <Link href="/About" className="flex gap-1">
+                <span>About</span>
+                <FcAbout size={25} />
               </Link>
             </div>
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700 flex">
