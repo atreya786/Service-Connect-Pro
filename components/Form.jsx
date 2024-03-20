@@ -134,20 +134,12 @@ const AuthForm = ({ type }) => {
       <Card>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">
-            {type === "register" ? (
-              <h1>Create a new account</h1>
-            ) : (
-              <h1>Login here</h1>
-            )}
+            {type === "register" ? "Create a new account" : "Login here"}
           </CardTitle>
           <CardDescription>
-            {type === "register" ? (
-              <h1>Enter below details to create your account</h1>
-            ) : (
-              <h1>
-                Enter your email and password below to login to your account
-              </h1>
-            )}
+            {type === "register"
+              ? "Enter below details to create your account"
+              : "Enter your email and password below to login to your account"}
           </CardDescription>
         </CardHeader>
         <CardContent>

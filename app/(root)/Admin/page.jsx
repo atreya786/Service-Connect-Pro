@@ -14,11 +14,7 @@ const Admin = () => {
 
   if (loading) return <Loader />;
 
-  return (
-    <div>
-      <Table />
-    </div>
-  );
+  return <Table />;
 };
 
 export default Admin;
