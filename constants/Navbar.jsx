@@ -62,7 +62,7 @@ const Navbar = () => {
           <div className="cursor-pointer">
             <Link href="/Checkout" className="flex">
               <FaShoppingCart size={30} />
-              <span className="font-bold text-sm absolute right-28 top-3 text-red-500">
+              <span className="font-bold text-sm absolute right-32 top-3 text-red-500">
                 {count}
               </span>
             </Link>

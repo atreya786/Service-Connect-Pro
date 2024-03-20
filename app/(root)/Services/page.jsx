@@ -1,6 +1,5 @@
 "use client";
 
-import Card from "@components/SearchResultCard";
 import Loader from "@components/Loader";
 import SearchBar from "@components/SearchBar";
 import SearchResults from "@components/SearchResults";
@@ -16,11 +15,12 @@ const Services = () => {
 
   if (loading) return <Loader />;
   return (
-    <div>
-      <SearchBar />
+    <section>
+      <div className="flex p-5 justify-center">
+        <SearchBar />
+      </div>
       <SearchResults />
-      <Card />
-    </div>
+    </section>
   );
 };
 
