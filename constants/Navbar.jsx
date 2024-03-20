@@ -118,8 +118,18 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700 flex">
-              <span>Notifications</span>
-              <IoNotifications size={25} />
+              <Sheet>
+                <SheetTrigger className="flex items-center">
+                  <span>Notifications</span>
+                  <IoNotifications size={25} />
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <SheetHeader>
+                    <SheetTitle>Notifications</SheetTitle>
+                  </SheetHeader>
+                  <Notification />
+                </SheetContent>
+              </Sheet>
             </div>
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
               <Link href="/Checkout" className="flex">
