@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SearchResultCard = () => {
-  return (
-    <div>SearchResultCard</div>
-  )
-}
+  return <div>SearchResultCard</div>;
+};
 
-export default SearchResultCard
+export default SearchResultCard;

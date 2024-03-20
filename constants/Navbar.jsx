@@ -11,6 +11,7 @@ import { FcAbout } from "react-icons/fc";
 import { FaShoppingCart } from "react-icons/fa";
 import Image from "next/image";
 import logo from "../public/logo.png";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +69,10 @@ const Navbar = () => {
           </div>
           <div className="cursor-pointer">
             <Link href="/Profile">
-              <CgProfile size={30} />
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>AC</AvatarFallback>
+              </Avatar>
             </Link>
           </div>
           <div onClick={handleLogout} className="cursor-pointer">

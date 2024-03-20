@@ -10,7 +10,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "./ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import SearchBar from "./SearchBar";
 
 const AdminTable = () => {
   const tableData = [
@@ -138,6 +145,10 @@ const AdminTable = () => {
   };
   return (
     <section className="p-5">
+      <div className="flex justify-between p-2">
+        <h1 className="text-3xl font-semibold">Recent Invoices</h1>
+        <SearchBar />
+      </div>
       <Table>
         <TableCaption>A list of recent invoices.</TableCaption>
         <TableHeader>
@@ -183,25 +194,25 @@ const AdminTable = () => {
           ))}
         </TableBody>
       </Table>
-      <div className="flex justify-center items-center p-4">
-        <Button
-          disabled={currentPage === 1}
-          onClick={() => handlePageChange(currentPage - 1)}
-          className="mr-2 px-4 py-2 rounded-md"
-        >
-          Previous
-        </Button>
-        <span className="px-2 ">
-          Page {currentPage} of {totalPages}
-        </span>
-        <Button
-          disabled={currentPage === totalPages}
-          onClick={() => handlePageChange(currentPage + 1)}
-          className="ml-2 px-4 py-2 rounded-md"
-        >
-          Next
-        </Button>
-      </div>
+      <Pagination className="p-5">
+        <PaginationContent>
+          <PaginationItem className="mr-2">
+            <PaginationPrevious
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
+          </PaginationItem>
+          <PaginationItem>
+            Page {currentPage} of {totalPages}
+          </PaginationItem>
+          <PaginationItem className="ml-2">
+            <PaginationNext
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </section>
   );
 };
