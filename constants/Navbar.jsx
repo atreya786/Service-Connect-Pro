@@ -11,7 +11,14 @@ import { FcAbout } from "react-icons/fc";
 import { FaShoppingCart } from "react-icons/fa";
 import Image from "next/image";
 import logo from "../public/logo.png";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import Notification from "@components/Notification";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +52,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
-            <Link className="flex gap-1 " href="/Admin">
+            <Link className="flex gap-1" href="/Admin">
               <span>Admin</span>
               <MdAdminPanelSettings size={30} />
             </Link>
@@ -56,23 +63,30 @@ const Navbar = () => {
               <GrServices size={30} />
             </Link>
           </div>
-          <div className="cursor-pointer">
-            <IoNotifications size={30} />
+          <div className="cursor-pointer flex items-center">
+            <Sheet>
+              <SheetTrigger>
+                <IoNotifications size={30} />
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>Notifications</SheetTitle>
+                </SheetHeader>
+                <Notification />
+              </SheetContent>
+            </Sheet>
           </div>
           <div className="cursor-pointer">
             <Link href="/Checkout" className="flex">
               <FaShoppingCart size={30} />
-              <span className="font-bold text-sm absolute right-32 top-3 text-red-500">
+              <span className="font-bold text-sm absolute right-28 top-3 text-red-500">
                 {count}
               </span>
             </Link>
           </div>
           <div className="cursor-pointer">
             <Link href="/Profile">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>AC</AvatarFallback>
-              </Avatar>
+              <CgProfile size={30} />
             </Link>
           </div>
           <div onClick={handleLogout} className="cursor-pointer">
