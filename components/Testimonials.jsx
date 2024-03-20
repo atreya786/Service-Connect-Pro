@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
 
 const testimonials = [
   {
@@ -27,15 +28,19 @@ const Testimonials = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-md transform transition-transform hover:scale-105"
-            >
-              <p className="text-lg mb-4">{testimonial.quote}</p>
-              <p className="text-gray-600 font-semibold">
-                {testimonial.author}
-              </p>
-            </div>
+            <Card>
+              <CardContent
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-md transform transition-transform hover:scale-105"
+              >
+                <CardTitle className="text-lg mb-4">
+                  {testimonial.quote}
+                </CardTitle>
+                <CardDescription className="text-gray-600 font-semibold">
+                  {testimonial.author}
+                </CardDescription>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

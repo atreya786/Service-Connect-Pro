@@ -7,8 +7,16 @@ import card2 from "../public/card2.webp";
 import card3 from "../public/card3.webp";
 import card4 from "../public/card4.webp";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
-const Card = () => {
+const ShowCard = () => {
   const cards = [
     {
       id: 1,
@@ -44,32 +52,34 @@ const Card = () => {
       <h1 className="text-4xl text-center font-semibold pb-5">Most Ordered</h1>
       <div className="w-full lg:flex md:justify-around flex-col lg:flex-row items-center sm:grid grid-rows-2 grid-flow-col flex gap-3">
         {cards.map((card) => (
-          <div
+          <Card
             key={card.id}
             className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105"
           >
-            <Link href="#">
-              <Image
-                className="rounded-t-lg h-64 w-full object-cover object-center"
-                src={card.image}
-                alt="Most Ordered Image"
-              />
-            </Link>
-            <div className="p-3">
+            <CardContent className="flex items-center justify-center pt-5">
               <Link href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {card.title}
-                </h5>
+                <Image
+                  className="rounded-lg h-64 w-full object-cover object-center"
+                  src={card.image}
+                  alt="Most Ordered Image"
+                />
               </Link>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            </CardContent>
+            <CardContent className="px-3">
+              <Link href="#">
+                <CardTitle className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+                  {card.title}
+                </CardTitle>
+              </Link>
+              <CardDescription className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-center">
                 {card.description}
-              </p>
-            </div>
-          </div>
+              </CardDescription>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>
   );
 };
 
-export default Card;
+export default ShowCard;

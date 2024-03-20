@@ -44,34 +44,32 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }) => (
 PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({ className, ...props }) => (
-  <PaginationLink
+  <div
     aria-label="Go to previous page"
     size="default"
     className={cn(
-      "gap-1 pl-2.5 cursor-pointer bg-gray-500 text-white",
+      "gap-1 p-3 cursor-pointer bg-gray-500 text-white rounded-lg",
       className
     )}
     {...props}
   >
-    <ChevronLeft className="h-4 w-4" />
-    <button disabled={props.disabled}>Previous</button>
-  </PaginationLink>
+    <button disabled={props.disabled}>&lt; Previous</button>
+  </div>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
 const PaginationNext = ({ className, ...props }) => (
-  <PaginationLink
+  <div
     aria-label="Go to next page"
     size="default"
     className={cn(
-      "gap-1 pr-2.5 cursor-pointer bg-gray-500 text-white",
+      "gap-1 p-3 cursor-pointer bg-gray-500 text-white rounded-lg",
       className
     )}
     {...props}
   >
-    <button disabled={props.disabled}>Next</button>
-    <ChevronRight className="h-4 w-4" />
-  </PaginationLink>
+    <button disabled={props.disabled}>Next &gt;</button>
+  </div>
 );
 PaginationNext.displayName = "PaginationNext";
 
