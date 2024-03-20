@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 
 const Cart = () => {
   const handleIncrement = (index) => {
@@ -41,6 +42,36 @@ const Cart = () => {
       price: 30,
       quantity: 2,
     },
+    {
+      id: 6,
+      name: "Product 1",
+      price: 10,
+      quantity: 1,
+    },
+    {
+      id: 7,
+      name: "Product 2",
+      price: 20,
+      quantity: 2,
+    },
+    {
+      id: 8,
+      name: "Product 3",
+      price: 15,
+      quantity: 3,
+    },
+    {
+      id: 9,
+      name: "Product 4",
+      price: 25,
+      quantity: 1,
+    },
+    {
+      id: 10,
+      name: "Product 5",
+      price: 30,
+      quantity: 2,
+    },
   ];
 
   const totalPrice = items.reduce(
@@ -57,30 +88,32 @@ const Cart = () => {
         <h1 className="font-semibold">Quantity</h1>
       </div>
       <div className="grid gap-4">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-between border-b p-1"
-          >
-            <h1 className="font-semibold">{item.name}</h1>
-            <h1 className="font-semibold">${item.price}</h1>
-            <div className="flex items-center gap-2">
-              <Button
-                className="px-3 py-1 bg-gray-500 rounded-md"
-                onClick={() => handleDecrement(index)}
-              >
-                -
-              </Button>
-              <span className="px-2 rounded-md">{item.quantity}</span>
-              <Button
-                className="px-3 py-1 bg-gray-500 rounded-md"
-                onClick={() => handleIncrement(index)}
-              >
-                +
-              </Button>
+        <ScrollArea className="h-[23rem] rounded-md border p-4">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between border-b p-1"
+            >
+              <h1 className="font-semibold">{item.name}</h1>
+              <h1 className="font-semibold">${item.price}</h1>
+              <div className="flex items-center gap-2">
+                <Button
+                  className="px-3 py-1 bg-gray-500 rounded-md"
+                  onClick={() => handleDecrement(index)}
+                >
+                  -
+                </Button>
+                <span className="px-2 rounded-md">{item.quantity}</span>
+                <Button
+                  className="px-3 py-1 bg-gray-500 rounded-md"
+                  onClick={() => handleIncrement(index)}
+                >
+                  +
+                </Button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </ScrollArea>
       </div>
       <div className="py-2 flex justify-end">
         <h2 className="font-semibold text-xl">Total - ${totalPrice}</h2>
