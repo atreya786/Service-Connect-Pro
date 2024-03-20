@@ -16,7 +16,7 @@ const CheckoutPage = () => {
   if (loading) return <Loader />;
 
   return (
-    <section className="flex">
+    <section className="w-full flex lg:flex-row flex-col lg:justify-around items-center p-5 gap-5">
       <Cart />
       <Payment />
     </section>

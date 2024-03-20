@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoNotifications, IoLogOutOutline, IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { MdAdminPanelSettings } from "react-icons/md";
@@ -26,6 +26,11 @@ const Navbar = () => {
   const handleLogout = async () => {
     signOut({ callbackUrl: "/" });
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 10000);
+  }, [isOpen]);
 
   return (
     <nav className="flex justify-between px-10 items-center py-3 shadow-md sticky top-0 left-0 bg-white z-50">

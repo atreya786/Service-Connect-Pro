@@ -23,7 +23,7 @@ import {
 
 export default function Payment() {
   return (
-    <Card>
+    <Card className="max-w-lg">
       <CardHeader>
         <CardTitle>Payment Method</CardTitle>
         <CardDescription>
