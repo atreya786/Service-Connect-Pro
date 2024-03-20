@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Loader from "@components/Loader";
 import OrderDetails from "@components/OrderDetails";
@@ -15,7 +15,7 @@ const Profile = () => {
 
   if (loading) return <Loader />;
   return (
-    <div>
+    <div className="md:flex justify-around items-center">
       <UserProfile />
       <OrderDetails />
     </div>

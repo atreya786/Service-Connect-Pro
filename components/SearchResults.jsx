@@ -11,8 +11,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useRouter } from "next/navigation";
 
 const SearchResults = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -144,6 +146,7 @@ const SearchResults = () => {
               <Card
                 key={data.id}
                 className="flex flex-col bg-white rounded-lg shadow-lg p-6"
+                onClick={() => router.push(`/ServiceDetails/${data.id}`)}
               >
                 <div className="flex justify-between items-center">
                   <CardContent className="flex items-center">
