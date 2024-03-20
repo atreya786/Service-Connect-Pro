@@ -64,28 +64,6 @@ const About = () => {
               strive to deliver innovative solutions that enhance user
               engagement and drive business growth.
             </p>
-            <ul className="flex justify-center md:justify-start mt-4">
-              <li className="mr-4">
-                <a href="mailto:sovonsutarsuitar123@gmail.com">
-                  <i className="fa fa-envelope fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.facebook.com/subarna2002">
-                  <i className="fa fa-facebook fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.instagram.com/itz_sutar/?hl=en">
-                  <i className="fa fa-instagram fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.linkedin.com/in/subarna-keshari-sutar-/">
-                  <i className="fa fa-linkedin fa-fw" />
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -102,29 +80,6 @@ const About = () => {
               strive to deliver innovative solutions that enhance user
               engagement and drive business growth.
             </p>
-
-            <ul className="flex justify-center md:justify-start mt-4">
-              <li className="mr-4">
-                <a href="mailto:sovonsutarsuitar123@gmail.com">
-                  <i className="fa fa-envelope fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.facebook.com/subarna2002">
-                  <i className="fa fa-facebook fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.instagram.com/itz_sutar/?hl=en">
-                  <i className="fa fa-instagram fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.linkedin.com/in/subarna-keshari-sutar-/">
-                  <i className="fa fa-linkedin fa-fw" />
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center md:mb-0">
@@ -167,28 +122,6 @@ const About = () => {
               strive to deliver innovative solutions that enhance user
               engagement and drive business growth.
             </p>
-            <ul className="flex justify-center md:justify-start mt-4">
-              <li className="mr-4">
-                <a href="mailto:sovonsutarsuitar123@gmail.com">
-                  <i className="fa fa-envelope fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.facebook.com/subarna2002">
-                  <i className="fa fa-facebook fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.instagram.com/itz_sutar/?hl=en">
-                  <i className="fa fa-instagram fa-fw" />
-                </a>
-              </li>
-              <li className="mr-4">
-                <a href="https://www.linkedin.com/in/subarna-keshari-sutar-/">
-                  <i className="fa fa-linkedin fa-fw" />
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
