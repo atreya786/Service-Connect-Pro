@@ -5,6 +5,7 @@ import Loader from "@components/Loader";
 import Map from "@components/Map";
 import Review from "@components/Review";
 import ServiceInfo from "@components/ServiceInfo";
+import UserProfile from "@components/UserProfile";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -19,13 +20,19 @@ const ServiceDetails = () => {
 
   if (loading) return <Loader />;
   return (
-    <div>
-      {/* <h1>{id}</h1> */}
-      <ServiceInfo />
-      <Map />
-      <Booking />
-      <Review />
-    </div>
+    <main className="flex flex-col gap-5">
+      <div className="md:flex justify-around p-5">
+        <div className="flex flex-col gap-5 p-3">
+          <ServiceInfo />
+          <div className="border-2 rounded-lg p-2 z-10">
+            <Map />
+          </div>
+          <Review />
+          <UserProfile />
+        </div>
+        <Booking />
+      </div>
+    </main>
   );
 };
 

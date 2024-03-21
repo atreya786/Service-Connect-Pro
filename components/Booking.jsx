@@ -29,7 +29,7 @@ const Booking = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 p-5">
       <div>
         <h1 className="text-xl font-semibold text-center pb-2">
           Select a Date
@@ -45,7 +45,7 @@ const Booking = () => {
         <h1 className="text-xl font-semibold text-center">
           Select a Time Slot
         </h1>
-        <div className="grid grid-cols-3 gap-4 py-2">
+        <div className="grid grid-cols-2 xl:grid-cols-3 gap-4 py-2">
           {timeSlots.map((slot, index) => (
             <div
               key={index}

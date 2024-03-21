@@ -146,7 +146,6 @@ const SearchResults = () => {
               <Card
                 key={data.id}
                 className="flex flex-col bg-white rounded-lg shadow-lg p-6"
-                onClick={() => router.push(`/ServiceDetails/${data.id}`)}
               >
                 <div className="flex justify-between items-center">
                   <CardContent className="flex items-center">
@@ -170,8 +169,11 @@ const SearchResults = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="ml-1 text-gray-600">{data.rating}</span>
-                  <Button className="px-4 py-2 bg-black text-white rounded-lg">
-                    Add to Cart
+                  <Button
+                    className="px-4 py-2 bg-black text-white rounded-lg"
+                    onClick={() => router.push(`/ServiceDetails/${data.id}`)}
+                  >
+                    View Service
                   </Button>
                 </div>
               </Card>
