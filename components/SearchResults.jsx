@@ -12,6 +12,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useRouter } from "next/navigation";
+import image from "../public/profile.webp"
+import Image from "next/image";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -149,9 +151,9 @@ const SearchResults = () => {
               >
                 <div className="flex justify-between items-center">
                   <CardContent className="flex items-center">
-                    <img
+                    <Image
                       className="w-10 h-10 rounded-full"
-                      src="/profile.jpg"
+                      src={image}
                       alt="profile"
                     />
                     <div className="ml-3">

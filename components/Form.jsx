@@ -127,7 +127,7 @@ const AuthForm = ({ type }) => {
 
   return (
     <div className="mx-auto text-center p-3 rounded-xl">
-      <div className="flex items-center justify-center mb-2">
+      <div className="flex items-center justify-center py-2 gap-3">
         <Image src={logo} alt="logo" width={100} height={100} />
         <h1 className="text-3xl font-bold">Service Connect Pro</h1>
       </div>

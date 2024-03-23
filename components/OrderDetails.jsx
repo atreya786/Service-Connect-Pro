@@ -1,5 +1,7 @@
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import image from "../public/profile.webp";
+import Image from "next/image";
 
 const OrderDetails = () => {
   const items = [
@@ -54,9 +56,9 @@ const OrderDetails = () => {
                 className="flex items-center border-b border-gray-200 py-4"
               >
                 <div className="w-16">
-                  <img
+                  <Image
                     className="w-full h-auto object-cover"
-                    src={item.image}
+                    src={image}
                     alt={item.title}
                   />
                 </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Card } from "./ui/card";
+import Image from "next/image";
+import image from "../public/profile.webp"
 
 const ServiceInfo = () => {
   return (
@@ -7,7 +9,7 @@ const ServiceInfo = () => {
       <Card>
         <div className="flex flex-col gap-4 p-5">
           <div className="flex justify-around">
-            <img src="" alt="" className="bg-black h-56 w-56" />
+            <Image src={image} alt="" className="bg-black h-56 w-56" />
           </div>
           <h1 className="text-2xl font-semibold">Service Name</h1>
           <h1 className="text-lg">
