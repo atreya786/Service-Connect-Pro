@@ -21,12 +21,12 @@ const Hero = () => {
         </div>
         <div className="pt-5 text-center md:text-start md:w-[60%]">
           Welcome to Service Connect Pro, your ultimate destination for seamless
-          collaboration between service providers and clients. Whether you're a
+          collaboration between service providers and clients. Whether you&apos;re a
           professional seeking new opportunities or a client in search of
           top-notch services, our platform offers the perfect match. Experience
           a revolution in service provision as we empower growth, foster
           connections, and elevate experiences. Join our vibrant community where
-          success knows no bounds, and together, let's redefine the way services
+          success knows no bounds, and together, let&apos;s redefine the way services
           are delivered. Embrace efficiency, embrace excellence – with Service
           Connect Pro, your journey towards success begins here.
         </div>

@@ -293,7 +293,7 @@ const AuthForm = ({ type }) => {
             </div>
           ) : (
             <div className="text-lg">
-              <Link href="/Register">Don't have an account? Register Here</Link>
+              <Link href="/Register">Don&apos;t have an account? Register Here</Link>
             </div>
           )}
         </CardFooter>

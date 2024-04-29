@@ -178,8 +178,8 @@ const AdminTable = () => {
         </TableHeader>
         <TableBody>
           {currentPageData.map((data) => (
-            <TableRow>
-              <TableCell key={data.id} className="font-semibold text-center">
+            <TableRow key={data.id}>
+              <TableCell className="font-semibold text-center">
                 {data.id}
               </TableCell>
               <TableCell className="text-center">{data.person1}</TableCell>
