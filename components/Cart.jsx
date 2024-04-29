@@ -1,8 +1,77 @@
+"use client";
+
 import React from "react";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
+  const router = useRouter();
+
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => setScriptLoaded(true);
+    document.body.appendChild(script);
+  }, []);
+  const placeOrder = async () => {
+    if (!scriptLoaded) return;
+
+    try {
+      const key = process.env.NEXT_RAZORPAY_KEY_ID;
+      if (!key) {
+        throw new Error("Razorpay key not found.");
+      }
+
+      const response = await fetch("/api/payment");
+      if (!response.ok) {
+        throw new Error("Failed to fetch order details.");
+      }
+
+      const { order } = await response.json();
+
+      const options = {
+        key,
+        name: "Atreya",
+        currency: order.currency,
+        amount: order.amount,
+        order_id: order.id,
+        description: "Understanding RazorPay Integration",
+        handler: function (response) {
+          if (response.razorpay_payment_id) {
+            router.push(
+              `/PaymentSuccess?paymentid=${response.razorpay_payment_id}`
+            );
+          } else {
+            throw new Error("Payment failed.");
+          }
+        },
+        prefill: {
+          name: "Atreya",
+          email: "atreya@gmail.com",
+          contact: "9999999999",
+        },
+      };
+
+      if (typeof window !== "undefined" && window.Razorpay) {
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+
+        paymentObject.on("payment.failed", function (response) {
+          alert("Payment failed. Please try again. Contact support for help");
+        });
+      } else {
+        console.error("Razorpay library not found");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error.message);
+    }
+  };
+
   const handleIncrement = (index) => {
     // Implement logic to increment quantity
   };
@@ -78,7 +147,6 @@ const Cart = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
   return (
     <div className="bg-white rounded-lg shadow-md p-6 max-w-3xl w-full">
       <h2 className="text-3xl font-semibold mb-4">Your Cart</h2>
@@ -115,8 +183,9 @@ const Cart = () => {
           ))}
         </ScrollArea>
       </div>
-      <div className="py-2 flex justify-end">
+      <div className="py-2 flex justify-around">
         <h2 className="font-semibold text-xl">Total - ${totalPrice}</h2>
+        <Button onClick={placeOrder}>Place Order</Button>
       </div>
     </div>
   );

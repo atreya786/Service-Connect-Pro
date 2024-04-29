@@ -2,7 +2,6 @@
 
 import Cart from "@components/Cart";
 import Loader from "@components/Loader";
-import Payment from "@components/Payment";
 import React, { useEffect, useState } from "react";
 
 const CheckoutPage = () => {
@@ -18,7 +17,6 @@ const CheckoutPage = () => {
   return (
     <section className="w-full flex lg:flex-row flex-col lg:justify-around items-center p-5 gap-5">
       <Cart />
-      <Payment />
     </section>
   );
 };
