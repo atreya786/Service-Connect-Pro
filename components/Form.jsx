@@ -29,6 +29,7 @@ import {
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const AuthForm = ({ type }) => {
   const schema = z.object({
@@ -58,7 +59,20 @@ const AuthForm = ({ type }) => {
           "Password must be at least 6 characters and contain at least one special character",
       })
       .includes(z.string().regex(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/)),
+    profilePhoto: z.string({ message: "Profile Photo is required" }),
+    businessName: z.string().min(3, {
+      message: "Business Name must be at least 3 characters",
+    }),
+    businessCategory: z.string().min(3, {
+      message: "Business Category must be at least 3 characters",
+    }),
+    businessPhoto: z.string({ message: "Business Photo is required" }),
+    role: z.string({ message: "Role is required" }),
   });
+
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState("");
+  const [businessPhotoUrl, setBusinessPhotoUrl] = useState("");
+  const [value, setValue] = useState("user");
 
   const { register, control, handleSubmit } = useForm(
     {
@@ -69,6 +83,11 @@ const AuthForm = ({ type }) => {
         location: "",
         email: "",
         password: "",
+        profilePhoto: profilePhotoUrl,
+        businessName: "",
+        businessCategory: "",
+        businessPhoto: businessPhotoUrl,
+        role: value,
       },
     },
     {
@@ -234,50 +253,153 @@ const AuthForm = ({ type }) => {
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    name="profilePhoto"
+                    control={control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <Label>
+                          <span className="text-xl">Proifle Photo - </span>
+                        </Label>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            {...register("profilePhoto")}
+                            type="file"
+                            className="input-field p-2 rounded"
+                            onChange={handleFileChange}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  {value === "provider" && (
+                    <>
+                      <FormField
+                        name="businessName"
+                        control={control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label>
+                              <span className="text-xl">Business Name - </span>
+                            </Label>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                {...register("businessName")}
+                                type="text"
+                                placeholder="Business Name"
+                                className="input-field p-2 rounded"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        name="businessCategory"
+                        control={control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label>
+                              <span className="text-xl">
+                                Business Category -{" "}
+                              </span>
+                            </Label>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                {...register("businessCategory")}
+                                type="text"
+                                placeholder="Business Category"
+                                className="input-field p-2 rounded"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        name="businessPhoto"
+                        control={control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label>
+                              <span className="text-xl">Business Photo - </span>
+                            </Label>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                {...register("businessPhoto")}
+                                type="file"
+                                className="input-field p-2 rounded"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  )}
                 </>
               )}
-              <FormField
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <Label>
-                      <span className="text-xl">Email - </span>
-                    </Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        {...register("email")}
-                        type="email"
-                        placeholder="Email"
-                        className="input-field p-2 rounded"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+              <>
+                <FormField
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <Label>
+                        <span className="text-xl">Email - </span>
+                      </Label>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          {...register("email")}
+                          type="email"
+                          placeholder="Email"
+                          className="input-field p-2 rounded"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <Label>
+                        <span className="text-xl">Password - </span>
+                      </Label>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          {...register("password")}
+                          type="password"
+                          placeholder="Password"
+                          className="input-field p-2 rounded"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {type === "register" && (
+                  <RadioGroup
+                    defaultValue="comfortable"
+                    onChange={(e) => setValue(e.target.value)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="provider" id="provider" />
+                      <Label htmlFor="r2">Service Provider</Label>
+                    </div>
+                  </RadioGroup>
                 )}
-              />
-              <FormField
-                name="password"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <Label>
-                      <span className="text-xl">Password - </span>
-                    </Label>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        {...register("password")}
-                        type="password"
-                        placeholder="Password"
-                        className="input-field p-2 rounded"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              </>
               <div className="flex justify-center">
                 <Button className="font-bold w-52" type="submit">
                   {type === "register" ? "Join Free" : "Enjoy your services"}
@@ -293,7 +415,9 @@ const AuthForm = ({ type }) => {
             </div>
           ) : (
             <div className="text-lg">
-              <Link href="/Register">Don&apos;t have an account? Register Here</Link>
+              <Link href="/Register">
+                Don&apos;t have an account? Register Here
+              </Link>
             </div>
           )}
         </CardFooter>

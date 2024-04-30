@@ -21,11 +21,14 @@ export async function POST(req, res) {
 
     await connectToDB();
 
-    await Payment.create({
+    const payment = new Payment({
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
     });
+
+    await payment.save();
+    
   } else {
     return NextResponse.json(
       {
