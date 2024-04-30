@@ -7,9 +7,8 @@ export const POST = async (req, res) => {
   try {
     await connectToDB();
 
-    console.log(req.body);
-
     const body = await req.json();
+    console.log(body)
 
     const {
       firstName,
@@ -24,10 +23,16 @@ export const POST = async (req, res) => {
       businessPhoto,
       role,
     } = body;
-    const existingUser = "",
+
+    let existingUser = "",
       existingProvider = "";
-    if (role === "user") existingUser = await User.findOne({ email });
-    else existingProvider = await Provider.findOne({ email });
+
+    if (role === "user") {
+      existingUser = await User.findOne({ email });
+    } else {
+      existingProvider = await Provider.findOne({ email });
+    }
+    console.log(existingUser, existingProvider);
 
     if (existingUser) {
       return new Response("User already exists", {
@@ -41,7 +46,7 @@ export const POST = async (req, res) => {
     }
 
     const hashedPassword = await hash(password, 10);
-    const newUser = "",
+    let newUser = "",
       newProvider = "";
     if (role === "user") {
       newUser = new User({
@@ -55,6 +60,7 @@ export const POST = async (req, res) => {
         role,
       });
       await newUser.save();
+      console.log("New User created");
     } else {
       newProvider = new Provider({
         firstName,
@@ -70,6 +76,7 @@ export const POST = async (req, res) => {
         role,
       });
       await newProvider.save();
+      console.log("New Provider created");
     }
 
     return new Response(

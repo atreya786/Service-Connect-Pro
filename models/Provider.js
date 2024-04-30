@@ -28,7 +28,7 @@ const ProviderSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    profileImage: {
+    profilePhoto: {
       type: String,
       default: "",
     },
@@ -46,7 +46,6 @@ const ProviderSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["Provider"],
     },
     orders: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],

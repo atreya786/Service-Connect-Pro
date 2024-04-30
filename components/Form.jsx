@@ -70,9 +70,9 @@ const AuthForm = ({ type }) => {
     role: z.string({ message: "Role is required" }),
   });
 
+  const [role, setRole] = useState("user");
   const [profilePhotoUrl, setProfilePhotoUrl] = useState("");
   const [businessPhotoUrl, setBusinessPhotoUrl] = useState("");
-  const [value, setValue] = useState("user");
 
   const { register, control, handleSubmit } = useForm(
     {
@@ -83,11 +83,11 @@ const AuthForm = ({ type }) => {
         location: "",
         email: "",
         password: "",
-        profilePhoto: profilePhotoUrl,
+        profilePhoto: "",
         businessName: "",
         businessCategory: "",
-        businessPhoto: businessPhotoUrl,
-        role: value,
+        businessPhoto: "",
+        role: role,
       },
     },
     {
@@ -101,6 +101,57 @@ const AuthForm = ({ type }) => {
 
   if (loading) return <Loader />;
 
+  const onFormSubmit2 = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append(
+      "upload_preset",
+      `${process.env.NEXT_PUBLIC_CLOUDINARY_PRESET}`
+    );
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      setBusinessPhotoUrl(data.secure_url);
+      toast.success("Business Photo Uploaded Successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    formData.append(
+      "upload_preset",
+      `${process.env.NEXT_PUBLIC_CLOUDINARY_PRESET}`
+    );
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      setProfilePhotoUrl(data.secure_url);
+      toast.success("Profile Photo Uploaded Successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setLoading(true);
@@ -110,10 +161,15 @@ const AuthForm = ({ type }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          profilePhoto: profilePhotoUrl,
+          businessPhoto: businessPhotoUrl,
+        }),
       });
 
       if (res.ok) {
+        setProfilePhotoUrl("");
         toast.success("Registered Successfully");
         router.push("/");
         setLoading(false);
@@ -259,22 +315,21 @@ const AuthForm = ({ type }) => {
                     render={({ field }) => (
                       <FormItem>
                         <Label>
-                          <span className="text-xl">Proifle Photo - </span>
+                          <span className="text-xl">Profile Photo - </span>
                         </Label>
                         <FormControl>
                           <Input
                             {...field}
-                            {...register("profilePhoto")}
                             type="file"
                             className="input-field p-2 rounded"
-                            onChange={handleFileChange}
+                            onChange={onFormSubmit}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  {value === "provider" && (
+                  {role === "provider" && (
                     <>
                       <FormField
                         name="businessName"
@@ -331,9 +386,9 @@ const AuthForm = ({ type }) => {
                             <FormControl>
                               <Input
                                 {...field}
-                                {...register("businessPhoto")}
                                 type="file"
                                 className="input-field p-2 rounded"
+                                onChange={onFormSubmit2}
                               />
                             </FormControl>
                             <FormMessage />
@@ -390,8 +445,8 @@ const AuthForm = ({ type }) => {
 
                 {type === "register" && (
                   <RadioGroup
-                    defaultValue="comfortable"
-                    onChange={(e) => setValue(e.target.value)}
+                    defaultValue="user"
+                    onChange={(e) => setRole(e.target.value)}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="provider" id="provider" />

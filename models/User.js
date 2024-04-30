@@ -28,13 +28,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    profileImage: {
+    profilePhoto: {
       type: String,
       default: "",
     },
     role: {
       type: String,
-      enum: ["User"],
     },
     orders: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
