@@ -1,6 +1,6 @@
 import User from "@models/User";
 import Provider from "@models/Provider";
-import { connectToDB } from "@utils";
+import connectToDB from "@utils/index";
 import { hash } from "bcryptjs";
 
 export const POST = async (req, res) => {
@@ -8,7 +8,6 @@ export const POST = async (req, res) => {
     await connectToDB();
 
     const body = await req.json();
-    console.log(body)
 
     const {
       firstName,
@@ -32,7 +31,6 @@ export const POST = async (req, res) => {
     } else {
       existingProvider = await Provider.findOne({ email });
     }
-    console.log(existingUser, existingProvider);
 
     if (existingUser) {
       return new Response("User already exists", {
@@ -44,7 +42,7 @@ export const POST = async (req, res) => {
         status: 400,
       });
     }
-
+    let rating = Math.floor(Math.random() * 5) + 1;
     const hashedPassword = await hash(password, 10);
     let newUser = "",
       newProvider = "";
@@ -74,6 +72,7 @@ export const POST = async (req, res) => {
         businessCategory,
         businessPhoto,
         role,
+        rating,
       });
       await newProvider.save();
       console.log("New Provider created");

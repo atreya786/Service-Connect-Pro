@@ -6,6 +6,9 @@ const nextConfig = {
     NEXT_RAZORPAY_KEY_ID: process.env.NEXT_RAZORPAY_KEY_ID,
     NEXT_RAZORPAY_KEY_SECRET: process.env.NEXT_RAZORPAY_KEY_SECRET,
   },
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
 };
 
 export default nextConfig;

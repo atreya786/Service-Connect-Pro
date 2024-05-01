@@ -47,6 +47,14 @@ const ProviderSchema = new mongoose.Schema(
     role: {
       type: String,
     },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    price: {
+      type: Number,
+      default: 100,
+    },
     orders: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
       default: [],

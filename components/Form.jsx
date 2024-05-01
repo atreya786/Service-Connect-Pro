@@ -87,7 +87,7 @@ const AuthForm = ({ type }) => {
         businessName: "",
         businessCategory: "",
         businessPhoto: "",
-        role: role,
+        role: "",
       },
     },
     {
@@ -165,6 +165,7 @@ const AuthForm = ({ type }) => {
           ...data,
           profilePhoto: profilePhotoUrl,
           businessPhoto: businessPhotoUrl,
+          role: role,
         }),
       });
 
