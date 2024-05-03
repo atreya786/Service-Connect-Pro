@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoNotifications, IoLogOutOutline, IoMenu } from "react-icons/io5";
@@ -31,6 +31,8 @@ const Navbar = () => {
     }, 10000);
   }, [isOpen]);
 
+  const { data: session } = useSession();
+
   return (
     <nav className="flex justify-between px-10 items-center py-3 shadow-md sticky top-0 left-0 bg-white z-50">
       <Link href="/Home">
@@ -55,19 +57,21 @@ const Navbar = () => {
               <GrServices size={30} />
             </Link>
           </div>
-          <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
-            <Link className="flex gap-1" href="/Admin">
-              <span>Admin</span>
-              <MdAdminPanelSettings size={30} />
-            </Link>
-          </div>
+          {session?.user?.role === "admin" && (
+            <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
+              <Link className="flex gap-1" href="/Admin">
+                <span>Admin</span>
+                <MdAdminPanelSettings size={30} />
+              </Link>
+            </div>
+          )}
           <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
             <Link href="/About" className="flex gap-1">
               <span>About</span>
               <FcAbout size={30} />
             </Link>
           </div>
-          <div className="cursor-pointer flex items-center">
+          {/* <div className="cursor-pointer flex items-center">
             <Sheet>
               <SheetTrigger>
                 <IoNotifications size={30} />
@@ -79,7 +83,7 @@ const Navbar = () => {
                 <Notification />
               </SheetContent>
             </Sheet>
-          </div>
+          </div> */}
           <div className="cursor-pointer">
             <Link href="/Checkout" className="flex">
               <FaShoppingCart size={30} />
@@ -106,19 +110,21 @@ const Navbar = () => {
                 <GrServices size={25} />
               </Link>
             </div>
-            <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
-              <Link className="flex gap-1" href="/Admin">
-                <span>Admin</span>
-                <MdAdminPanelSettings size={25} />
-              </Link>
-            </div>
+            {session?.user?.role === "admin" && (
+              <div className="text-black text-xl p-1 font-bold cursor-pointer hover:text-gray-700">
+                <Link className="flex gap-1" href="/Admin">
+                  <span>Admin</span>
+                  <MdAdminPanelSettings size={25} />
+                </Link>
+              </div>
+            )}
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
               <Link href="/About" className="flex gap-1">
                 <span>About</span>
                 <FcAbout size={25} />
               </Link>
             </div>
-            <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700 flex">
+            {/* <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700 flex">
               <Sheet>
                 <SheetTrigger className="flex items-center">
                   <span>Notifications</span>
@@ -131,7 +137,7 @@ const Navbar = () => {
                   <Notification />
                 </SheetContent>
               </Sheet>
-            </div>
+            </div> */}
             <div className="text-black p-1 text-xl font-bold cursor-pointer hover:text-gray-700">
               <Link href="/Checkout" className="flex">
                 <span>Cart</span>
