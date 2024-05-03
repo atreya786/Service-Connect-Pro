@@ -12,6 +12,7 @@ export const MyProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [orderedItems, setOrderedItems] = useState([]);
   const [serviceDetails, setServiceDetails] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
 
   const { data: session } = useSession();
   const userId = session?.user?.id;
@@ -27,6 +28,16 @@ export const MyProvider = ({ children }) => {
       }
     };
 
+    const fetchAllOrders = async () => {
+      try {
+        const response = await axios.get("/api/orders");
+        let data = response?.data;
+        setAllOrders(data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
     const fetchOrders = async () => {
       try {
         const response = await axios.get(`/api/orders/${userId}`);
@@ -37,6 +48,7 @@ export const MyProvider = ({ children }) => {
       }
     };
 
+    fetchAllOrders();
     fetchOrders();
     fetchProviders();
   }, []);
@@ -89,6 +101,8 @@ export const MyProvider = ({ children }) => {
         setServiceDetails,
         fetchServiceById,
         addOrder,
+        allOrders,
+        setAllOrders,
       }}
     >
       {children}

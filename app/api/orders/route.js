@@ -41,3 +41,16 @@ export const POST = async (req, res) => {
     });
   }
 };
+
+export const GET = async (req, res) => {
+  try {
+    await connectToDB();
+
+    const allOrders = await Order.find();
+
+    return new Response(JSON.stringify(allOrders), { status: 200 });
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return new Response("Error fetching orders", { status: 500 });
+  }
+};

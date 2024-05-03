@@ -4,7 +4,6 @@ import { useMyContext } from "@context/MyContext";
 
 const OrderDetails = () => {
   const { orderedItems } = useMyContext();
-  console.log(orderedItems);
 
   return (
     <main className="container mx-auto px-4 py-8">
