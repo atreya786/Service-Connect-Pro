@@ -1,11 +1,10 @@
-
-
 import { Roboto } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@constants/Navbar";
 import Footer from "@constants/Footer";
 import { MyProvider } from "@context/MyContext";
+import Provider from "@components/SessionProvider";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["300"] });
 
@@ -27,9 +26,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className={roboto.className}>
         <Toaster position="top-right" />
-        <Navbar />
-        <MyProvider>{children}</MyProvider>
-        <Footer />
+        <MyProvider>
+          <Provider>
+            <Navbar />
+            {children}
+            <Footer />
+          </Provider>
+        </MyProvider>
       </body>
     </html>
   );
