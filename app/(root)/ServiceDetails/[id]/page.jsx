@@ -3,9 +3,9 @@
 import Booking from "@components/Booking";
 import Loader from "@components/Loader";
 import Map from "@components/Map";
+import ProviderDetails from "@components/ProviderDetails";
 import Review from "@components/Review";
 import ServiceInfo from "@components/ServiceInfo";
-import UserProfile from "@components/UserProfile";
 import { useMyContext } from "@context/MyContext";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -28,12 +28,12 @@ const ServiceDetails = () => {
         <div className="flex flex-col gap-5 p-3">
           <ServiceInfo service={serviceDetails} />
           <div className="border-2 rounded-lg p-2 z-10">
-            <Map coordinate={serviceDetails.location} />
+            <Map address={serviceDetails.location} />
           </div>
           <Review reviews={serviceDetails.reviews} />
-          <UserProfile provider={serviceDetails} />
+          <ProviderDetails provider={serviceDetails} />
         </div>
-        <Booking />
+        <Booking service={serviceDetails}/>
       </div>
     </main>
   );

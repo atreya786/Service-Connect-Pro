@@ -1,46 +1,10 @@
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import image from "../public/profile.webp";
-import Image from "next/image";
+import { useMyContext } from "@context/MyContext";
 
 const OrderDetails = () => {
-  const items = [
-    {
-      id: 1,
-      image: "/product1.jpg",
-      title: "Product 1",
-      name: "Vintage Leather Jacket",
-      price: 129.99,
-    },
-    {
-      id: 2,
-      image: "/product2.jpg",
-      title: "Product 2",
-      name: "Classic White Sneakers",
-      price: 79.99,
-    },
-    {
-      id: 3,
-      image: "/product3.jpg",
-      title: "Product 3",
-      name: "Stainless Steel Watch",
-      price: 199.99,
-    },
-    {
-      id: 4,
-      image: "/product4.jpg",
-      title: "Product 4",
-      name: "Denim Slim Fit Jeans",
-      price: 59.99,
-    },
-    {
-      id: 5,
-      image: "/product5.jpg",
-      title: "Product 5",
-      name: "Cotton Casual Shirt",
-      price: 49.99,
-    },
-  ];
+  const { orderedItems } = useMyContext();
+  console.log(orderedItems);
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -49,29 +13,31 @@ const OrderDetails = () => {
           <h2 className="text-2xl font-bold text-gray-800 pb-4">
             Ordered Items
           </h2>
-          <ScrollArea className="h-[23rem] rounded-md border p-4">
-            {items.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center border-b border-gray-200 py-4"
-              >
-                <div className="w-16">
-                  <Image
-                    className="w-full h-auto object-cover"
-                    src={image}
-                    alt={item.title}
-                  />
-                </div>
-                <div className="flex justify-around items-center w-full pl-4">
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{item.name}</p>
-                  <p className="text-sm text-gray-700 pt-1">${item.price}</p>
-                </div>
+          <div>
+            <div className="flex items-center border-b border-gray-200 py-4">
+              <div className="flex justify-around items-center w-full pl-4">
+                <p className="text-md text-black font-bold">Business Name</p>
+                <p className="text-md text-black font-bold">Date</p>
+                <p className="text-md text-black font-bold">Time</p>
+                <p className="text-md text-black font-bold">Amount</p>
               </div>
-            ))}
-          </ScrollArea>
+            </div>
+            <ScrollArea className="h-[23rem] rounded-md border p-4">
+              {orderedItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center border-b border-gray-200 py-4"
+                >
+                  <div className="flex justify-around items-center w-full pl-4">
+                    <p className="text-sm text-gray-600">{item.businessName}</p>
+                    <p className="text-sm text-gray-600">{item.dateTime.slice(0,10)}</p>
+                    <p className="text-sm text-gray-600">{item.time}</p>
+                    <p className="text-sm text-gray-700 pt-1">${item.amount}</p>
+                  </div>
+                </div>
+              ))}
+            </ScrollArea>
+          </div>
         </div>
       </div>
     </main>

@@ -26,13 +26,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className={roboto.className}>
         <Toaster position="top-right" />
-        <MyProvider>
-          <Provider>
+        <Provider>
+          <MyProvider>
             <Navbar />
             {children}
             <Footer />
-          </Provider>
-        </MyProvider>
+          </MyProvider>
+        </Provider>
       </body>
     </html>
   );

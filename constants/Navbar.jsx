@@ -22,7 +22,6 @@ import Notification from "@components/Notification";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [count, setCount] = useState(0);
   const handleLogout = async () => {
     signOut({ callbackUrl: "/" });
   };
@@ -84,9 +83,6 @@ const Navbar = () => {
           <div className="cursor-pointer">
             <Link href="/Checkout" className="flex">
               <FaShoppingCart size={30} />
-              <span className="font-bold text-sm absolute right-28 top-3 text-red-500">
-                {count}
-              </span>
             </Link>
           </div>
           <div className="cursor-pointer">
