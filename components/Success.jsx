@@ -7,8 +7,9 @@ const Success = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const paymentid = searchParams.get("paymentid");
-  const handleHome = () => {
-    router.push("/Home");
+
+  const handleProfile = () => {
+    router.push("/Profile");
   };
 
   return (
@@ -21,7 +22,7 @@ const Success = () => {
         <span className="block sm:inline">
           Your paymentID= {paymentid} has been processed.
         </span>
-        <Button className="ml-2" onClick={handleHome}>
+        <Button className="ml-2" onClick={handleProfile}>
           <svg
             className="fill-current h-6 w-6 text-green-500"
             role="button"

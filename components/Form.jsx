@@ -68,6 +68,9 @@ const AuthForm = ({ type }) => {
     }),
     businessPhoto: z.string({ message: "Business Photo is required" }),
     role: z.string({ message: "Role is required" }),
+    businessDescription: z.string().min(10, {
+      message: "Business Description must be at least 10 characters",
+    }),
   });
 
   const [role, setRole] = useState("user");
@@ -87,6 +90,7 @@ const AuthForm = ({ type }) => {
         businessName: "",
         businessCategory: "",
         businessPhoto: "",
+        businessDescription: "",
         role: "",
       },
     },
@@ -390,6 +394,28 @@ const AuthForm = ({ type }) => {
                                 type="file"
                                 className="input-field p-2 rounded"
                                 onChange={onFormSubmit2}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        name="businessDescription"
+                        control={control}
+                        render={({ field }) => (
+                          <FormItem>
+                            <Label>
+                              <span className="text-xl">
+                                Business Description -{" "}
+                              </span>
+                            </Label>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                {...register("businessDescription")}
+                                type="file"
+                                className="input-field p-2 rounded"
                               />
                             </FormControl>
                             <FormMessage />

@@ -20,6 +20,7 @@ export const POST = async (req, res) => {
       businessName,
       businessCategory,
       businessPhoto,
+      businessDescription,
       role,
     } = body;
 
@@ -71,6 +72,7 @@ export const POST = async (req, res) => {
         businessName,
         businessCategory,
         businessPhoto,
+        businessDescription,
         role,
         rating,
       });

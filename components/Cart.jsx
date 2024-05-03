@@ -1,13 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useMyContext } from "@context/MyContext";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const router = useRouter();
+  const { data: session } = useSession();
+  const { cartItems, setCartItems, addOrder } = useMyContext();
 
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -18,6 +22,9 @@ const Cart = () => {
     script.onload = () => setScriptLoaded(true);
     document.body.appendChild(script);
   }, []);
+
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+
   const placeOrder = async () => {
     if (!scriptLoaded) return;
 
@@ -27,22 +34,33 @@ const Cart = () => {
         throw new Error("Razorpay key not found.");
       }
 
-      const response = await fetch("/api/payment");
-      if (!response.ok) {
-        throw new Error("Failed to fetch order details.");
-      }
+      const orderDetails = {
+        userID: session.user.id,
+        cartItems,
+        totalPrice,
+        razorpay_payment_id: null,
+      };
 
-      const { order } = await response.json();
+      const response = await fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderDetails),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to place order.");
+      }
 
       const options = {
         key,
-        name: "Atreya",
-        currency: order.currency,
-        amount: order.amount,
-        order_id: order.id,
+        name: session.user.firstName,
+        amount: totalPrice * 100,
         description: "Understanding RazorPay Integration",
         handler: function (response) {
           if (response.razorpay_payment_id) {
+            orderDetails.razorpay_payment_id = response.razorpay_payment_id;
+            addOrder(orderDetails);
             router.push(
               `/PaymentSuccess?paymentid=${response.razorpay_payment_id}`
             );
@@ -51,9 +69,7 @@ const Cart = () => {
           }
         },
         prefill: {
-          name: "Atreya",
-          email: "atreya@gmail.com",
-          contact: "9999999999",
+          name: cartItems.businessName,
         },
       };
 
@@ -62,7 +78,9 @@ const Cart = () => {
         paymentObject.open();
 
         paymentObject.on("payment.failed", function (response) {
-          alert("Payment failed. Please try again. Contact support for help");
+          toast.error(
+            "Payment failed. Please try again. Contact support for help"
+          );
         });
       } else {
         console.error("Razorpay library not found");
@@ -72,113 +90,22 @@ const Cart = () => {
     }
   };
 
-  const handleIncrement = (index) => {
-    // Implement logic to increment quantity
-  };
-
-  const handleDecrement = (index) => {
-    // Implement logic to decrement quantity
-  };
-
-  const items = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 10,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 20,
-      quantity: 2,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 15,
-      quantity: 3,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 25,
-      quantity: 1,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 30,
-      quantity: 2,
-    },
-    {
-      id: 6,
-      name: "Product 1",
-      price: 10,
-      quantity: 1,
-    },
-    {
-      id: 7,
-      name: "Product 2",
-      price: 20,
-      quantity: 2,
-    },
-    {
-      id: 8,
-      name: "Product 3",
-      price: 15,
-      quantity: 3,
-    },
-    {
-      id: 9,
-      name: "Product 4",
-      price: 25,
-      quantity: 1,
-    },
-    {
-      id: 10,
-      name: "Product 5",
-      price: 30,
-      quantity: 2,
-    },
-  ];
-
-  const totalPrice = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
   return (
     <div className="bg-white rounded-lg shadow-md p-6 max-w-3xl w-full">
       <h2 className="text-3xl font-semibold mb-4">Your Cart</h2>
       <div className="flex text-lg items-center justify-between border-b p-2">
         <h1 className="font-semibold">Service Name</h1>
         <h1 className="font-semibold">Price</h1>
-        <h1 className="font-semibold">Quantity</h1>
       </div>
       <div className="grid gap-4">
         <ScrollArea className="h-[23rem] rounded-md border p-4">
-          {items.map((item, index) => (
+          {cartItems.map((item, index) => (
             <div
               key={index}
               className="flex items-center justify-between border-b p-1"
             >
-              <h1 className="font-semibold">{item.name}</h1>
+              <h1 className="font-semibold">{item.businessName}</h1>
               <h1 className="font-semibold">${item.price}</h1>
-              <div className="flex items-center gap-2">
-                <Button
-                  className="px-3 py-1 bg-gray-500 rounded-md"
-                  onClick={() => handleDecrement(index)}
-                >
-                  -
-                </Button>
-                <span className="px-2 rounded-md">{item.quantity}</span>
-                <Button
-                  className="px-3 py-1 bg-gray-500 rounded-md"
-                  onClick={() => handleIncrement(index)}
-                >
-                  +
-                </Button>
-              </div>
             </div>
           ))}
         </ScrollArea>

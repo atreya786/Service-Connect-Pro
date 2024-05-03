@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
   {
-    serviceCategory: {
+    businessName: {
       type: String,
       required: true,
     },
@@ -14,7 +14,22 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    paymentDetails: PaymentDetailsSchema,
+    userId: {
+      type: String,
+      required: true,
+    },
+    amount: {
+      type: Number,
+      required: true,
+    },
+    providerId: {
+      type: String,
+      required: true,
+    },
+    razorpay_payment_id: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

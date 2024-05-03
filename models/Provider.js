@@ -44,6 +44,10 @@ const ProviderSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    businessDescription: {
+      type: String,
+      default: "",
+    },
     role: {
       type: String,
     },

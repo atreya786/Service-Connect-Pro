@@ -2,10 +2,14 @@
 
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
+import { useMyContext } from "@context/MyContext";
+import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
-const Booking = () => {
+const Booking = ({ service }) => {
   const [date, setDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const { cartItems, setCartItems } = useMyContext();
 
   const timeSlots = [];
   const startTime = new Date().setHours(9, 0, 0, 0);
@@ -26,6 +30,19 @@ const Booking = () => {
 
   const handleTimeSlotClick = (slot) => {
     setSelectedTimeSlot(slot);
+  };
+
+  const handleCart = () => {
+    const { _id, price, businessName } = service;
+    const newBooking = {
+      providerId: _id,
+      price: price,
+      businessName: businessName,
+      dateTime: date.toISOString().split("T")[0],
+      time: selectedTimeSlot,
+    };
+    setCartItems([...cartItems, newBooking]);
+    toast.success("Booking added to cart!");
   };
 
   return (
@@ -58,6 +75,9 @@ const Booking = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div onClick={handleCart}>
+        <Button>Add to cart</Button>
       </div>
     </div>
   );
